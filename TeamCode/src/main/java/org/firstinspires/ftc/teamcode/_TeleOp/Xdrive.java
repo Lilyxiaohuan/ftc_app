@@ -40,16 +40,17 @@ public class Xdrive extends OpMode {
     public void loop() {
         double pi=3.14159;
         double y=-gamepad1.left_stick_y;
-        double x = gamepad1.left_stick_x;
+        double x=gamepad1.left_stick_x;
         double theta = Math.atan2(y,x)-pi/4;
-
-        if(Math.abs(y)>=Math.abs(x)){
-            x = y*Math.sin(theta);
-            y = 1;
+        x=Math.cos(theta);
+        y=Math.sin(theta);
+        if(Math.abs(y)>Math.abs(x)){
+            x=x/Math.abs(y);
+            y=y/Math.abs(y);
         }
         else if(Math.abs(x)>Math.abs(y)){
-            y = x*Math.cos(theta);
-            x = 1;
+            y=y/Math.abs(x);
+            x=x/Math.abs(x);
         }
 
         if (!bDebug) {
