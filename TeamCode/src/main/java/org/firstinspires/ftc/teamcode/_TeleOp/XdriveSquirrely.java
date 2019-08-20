@@ -37,7 +37,9 @@ public class XdriveSquirrely extends OpMode {
         double spin=(-gamepad1.right_stick_y-y);
         double stretchx=0;
         double stretchy=0;
-        if(Math.abs(x)>.01 || Math.abs(y)>.01){
+
+        //convert circle jystick input into a square
+        if(Math.abs(x)>.01 || Math.abs(y)>.01){//if non zero
             double theta = Math.atan2(y,x)-pi/4;
             double power=Math.sqrt(x*x+y*y);
             x=Math.cos(theta)*power;
@@ -54,9 +56,12 @@ public class XdriveSquirrely extends OpMode {
             x=x*stretch;
             y=y*stretch;
         }
+
+
         x=scaleInput(x);
         y=scaleInput(y);
         spin=scaleInput(spin);
+        
         if(!bDebug){
             NorthEast.setPower(-y+spin);
             SouthEast.setPower(x+spin);
